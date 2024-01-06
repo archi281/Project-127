@@ -1,16 +1,14 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import requests
 from bs4 import BeautifulSoup
-import time
 import pandas as pd
 
 START_URL = "https://en.wikipedia.org/wiki/List_of_brightest_stars_and_other_record_stars"
-browser = webdriver.Chrome("D:/Setup/chromedriver_win32/chromedriver.exe")
-browser.get(START_URL)
-time.sleep(10)
+
 stars_data = []
+headers = ['Star_name','Distance','Mass','Radius']  
 
 def scrape():
+        page = requests.get(START_URL)
    
         soup = BeautifulSoup(browser.page_source, "html.parser")
 
@@ -37,11 +35,11 @@ for i in range(0,len(stars_data)):
     Mass = stars_data[i][5]
     Radius = stars_data[i][6]
 
-    required_data = [Star_names, Distance, Mass, Radius,]
+    
     stars_data.append(required_data)
 
 print(stars_data)
 
-headers = ['Star_name','Distance','Mass','Radius','Luminosity']   
+
 star_df_1 = pd.DataFrame(stars_data, columns=headers)
 star_df_1.to_csv('scraped_data.csv',index=True, index_label="id")
