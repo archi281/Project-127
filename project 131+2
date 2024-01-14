@@ -16,3 +16,6 @@ stars_gravity = []
 for index, name in enumerate(stars_names):
   gravity = (float(stars_masses[index])*5.972e+24) / (float(stars_radiuses[index])*float(stars_radiuses[index])*6371000*6371000) * 6.674e-11
   stars_gravity.append(gravity)
+
+fig = px.scatter(x=planet_radiuses, y=planet_masses, size=planet_gravity, hover_data=[planet_names])
+fig.show()
