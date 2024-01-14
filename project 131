@@ -1,0 +1,18 @@
+import csv
+
+temp_stars_data_rows = list(stars_data_rows)
+
+stars_masses = []
+stars_radiuses = []
+stars_names = []
+
+for stars_data in stars_data_rows:
+  stars_masses.append(stars_data[3])
+  stars_radiuses.append(stars_data[7])
+  stars_names.append(stars_data[1])
+
+stars_gravity = []
+
+for index, name in enumerate(stars_names):
+  gravity = (float(stars_masses[index])*5.972e+24) / (float(stars_radiuses[index])*float(stars_radiuses[index])*6371000*6371000) * 6.674e-11
+  stars_gravity.append(gravity)
